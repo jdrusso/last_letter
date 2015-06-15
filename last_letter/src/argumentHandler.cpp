@@ -97,6 +97,25 @@ int main(int argc, char **argv)
 		ROS_ERROR("ArduPlane parameter is not available");
 	}
 
+
+	if(!ros::param::get("argumentHandler/instance",s)) {
+		ROS_INFO("instance is not (string)nan");
+		if (!ros::param::get("argumentHandler/instance",i)) {
+			ROS_INFO("instance is not an integer either");
+		}
+		else {
+			ros::param::set("instance", i);
+			ROS_INFO("Overwrote instance to %d", i);
+		}
+	}
+	else if (s.compare("nan") == 0) {
+		ROS_INFO("instance value is not set by an argument. Defaulting to 0.");
+		ros::param::set("instance", 0);
+	}
+	else {
+		ROS_ERROR("instance is string but not nan");
+	}
+
 	ros::param::set("nodeStatus/argumentHandler", 1);
 
 	ROS_INFO("Arguments loaded. argumentHandler node closing.");

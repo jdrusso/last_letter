@@ -119,8 +119,9 @@ if __name__ == '__main__':
 
     # Setup network infrastructure
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.bind(('127.0.0.1', 9002))
-    sock.connect(('127.0.0.1', 9003))
+    fdmPort = 9002 + int(rospy.get_param("instance"))*10
+    sock.bind(('127.0.0.1', fdmPort))
+    sock.connect(('127.0.0.1', fdmPort + 1))
 
     # Setup ROS node infrastructure
     rospy.init_node('fdmUDPSend')

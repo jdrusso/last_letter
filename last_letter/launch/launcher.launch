@@ -14,6 +14,7 @@
 	<arg name="home" default="nan"/>
 	<arg name="simRate" default="nan"/>
 	<arg name="deltaT" default="nan"/>
+	<arg name="instance" default="nan"/>
 
 	<!-- Enable simulation clock -->
 	<param name="use_sim_time" type="bool" value="true" />
@@ -28,6 +29,7 @@
 		<arg name="simRate" value="$(arg simRate)"/>
 		<arg name="deltaT" value="$(arg deltaT)"/>
 		<arg name="ArduPlane" value="$(arg ArduPlane)"/>
+		<arg name="instance" value="$(arg instance)"/>
 	</include>
 
 	<!-- ArduPlane SITL connection -->

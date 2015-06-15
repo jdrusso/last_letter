@@ -12,6 +12,7 @@
 	<arg name="home"/>
 	<arg name="simRate"/>
 	<arg name="deltaT"/>
+	<arg name="instance"/>
 
 	<!-- Initialization of parameters -->
 	<group>
@@ -43,6 +44,7 @@
 				<param name="simRate" value="$(arg simRate)"/>
 				<param name="deltaT" value="$(arg deltaT)"/>
 				<param name="ArduPlane" value="$(arg ArduPlane)"/>
+				<param name="instance" value="$(arg instance)"/>
 			</node>
 			<node if="$(arg log)" pkg="rosbag" name="recorder" type="record" args="-O UAV_recording.bag -a"/> <!-- topic activity recorder node -->
 			<node pkg="last_letter" name="clock" type="simClock" output="screen"/>
