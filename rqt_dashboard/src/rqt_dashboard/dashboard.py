@@ -24,7 +24,9 @@ class DashboardGrid(QtGui.QWidget):
 
 		prefix = '{}'.format(rospy.get_namespace())
 		rospack = rospkg.RosPack()
-		filename =  rospack.get_path('last_letter') + '/data/parameters/aircraft' + rospy.get_namespace() + 'dashboard.yaml'
+		print("NAMESPACE IS %s" % rospy.get_namespace())
+		uav_name = rospy.get_namespace().split("/")[2]
+		filename =  rospack.get_path('last_letter') + '/data/parameters/aircraft/' + uav_name + '/dashboard.yaml'
 		data = yaml.load(open(filename).read())
 		gauges = []
 		self.line = QtGui.QHBoxLayout()

@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 	ROS_INFO("Initializing clock node");
 	ros::init(argc, argv, "simClockNode");
 	ros::NodeHandle n;
-	pub = n.advertise<rosgraph_msgs::Clock>("/clock",1000);
+	pub = n.advertise<rosgraph_msgs::Clock>("clock",1000);
 	sub = n.subscribe("ctrlPWM", 100, controlsCallback);
 
 	int statusModel=0;

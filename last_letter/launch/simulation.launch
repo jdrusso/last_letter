@@ -45,6 +45,7 @@
 				<param name="deltaT" value="$(arg deltaT)"/>
 				<param name="ArduPlane" value="$(arg ArduPlane)"/>
 				<param name="instance" value="$(arg instance)"/>
+				<param name="uav_name" value="$(arg instance)"/>
 			</node>
 			<node if="$(arg log)" pkg="rosbag" name="recorder" type="record" args="-O UAV_recording.bag -a"/> <!-- topic activity recorder node -->
 			<node pkg="last_letter" name="clock" type="simClock" output="screen"/>

@@ -2,6 +2,8 @@
 <!--Simulation launcher for the HCAUV aircraft-->
 
 <launch>
+<group  ns="$(anon uav)">
+
 	<!-- Available arguments -->
 	<arg name="manualMode" default="true"/>
 	<arg name="autoMode" default="false"/>
@@ -44,4 +46,5 @@
 		<!-- <arg name="groundCam" value="$(arg groundCam" /> -->
 	</include>
 
+</group>
 </launch>
