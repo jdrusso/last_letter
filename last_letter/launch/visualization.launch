@@ -28,4 +28,3 @@
 	<node pkg="rqt_gui" type="rqt_gui" name="Dashboard" ns="$(arg uav_name)" args="--perspective-file $(find rqt_dashboard)/UAV_dashboard.perspective" output="screen" />
 
 </launch>
-

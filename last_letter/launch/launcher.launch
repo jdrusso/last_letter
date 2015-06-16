@@ -2,6 +2,10 @@
 <!--Simulation launcher for the HCAUV aircraft-->
 
 <launch>
+	
+	<!-- Enable simulation clock -->
+<param name="/use_sim_time" type="bool" value="true" />
+
 <group  ns="$(anon uav)">
 
 	<!-- Available arguments -->
@@ -17,9 +21,6 @@
 	<arg name="simRate" default="nan"/>
 	<arg name="deltaT" default="nan"/>
 	<arg name="instance" default="nan"/>
-
-	<!-- Enable simulation clock -->
-	<param name="use_sim_time" type="bool" value="true" />
 
 	<!-- Launch the simulator /-->
 	<include file="$(find last_letter)/launch/simulation.launch" >
