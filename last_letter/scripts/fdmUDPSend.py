@@ -128,7 +128,7 @@ if __name__ == '__main__':
     rospy.Subscriber('states', SimStates, state_callback, queue_size=1)
     rospy.Subscriber('linearAcc', RosVector3, accel_callback, queue_size=1)
     rospy.Subscriber('environment', Environment, env_callback, queue_size=1)
-    rospy.Subscriber('clock', Clock, clock_callback, queue_size=1)
+    rospy.Subscriber('/clock', Clock, clock_callback, queue_size=1)
     pub = rospy.Publisher('ctrlPWM',SimPWM, queue_size=10)
 
     rate = rospy.get_param("/world/simRate");

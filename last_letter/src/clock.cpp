@@ -43,7 +43,24 @@ int main(int argc, char **argv)
 	ROS_INFO("Initializing clock node");
 	ros::init(argc, argv, "simClockNode");
 	ros::NodeHandle n;
-	pub = n.advertise<rosgraph_msgs::Clock>("clock",1000);
+
+	bool status;
+
+	//Check if clock_active exists
+	if ( !ros::param::get("/clock_active", status) || !status){
+
+		ROS_INFO("STARTING CLOCK");
+		//If no clock is active, start a clock topic
+		pub = n.advertise<rosgraph_msgs::Clock>("/clock",1000);
+		ros::param::set("/clock_active", true);
+	} else {
+
+		ROS_INFO("CLOCK ALREADY EXISTS");
+		ros::param::set("nodeStatus/clock", 1);
+		return 0;
+	}
+
+
 	sub = n.subscribe("ctrlPWM", 100, controlsCallback);
 
 	int statusModel=0;

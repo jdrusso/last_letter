@@ -11,7 +11,7 @@ class clock:
 		self.dt = 1.0/rospy.get_param('simRate')
 		self.counter = 0
 		self.time = rospy.Time.from_sec(0)
-		self.pub = rospy.Publisher('clock', Clock)
+		self.pub = rospy.Publisher('/clock', Clock)
 
 
 if __name__=='__main__':

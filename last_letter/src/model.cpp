@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
 	ros::init(argc, argv, "simNode");
 	ros::NodeHandle n;
-	ros::Subscriber sub = n.subscribe("clock",1000, stepCallback);
+	ros::Subscriber sub = n.subscribe("/clock",1000, stepCallback);
 	uav = new ModelPlane(n); //Create a ModelPlane passing the nodehandle for subscriptions & publicatons
 
 	int statusClock=0, statusEnv=0, statusArg=0;
