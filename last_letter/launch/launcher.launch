@@ -2,9 +2,9 @@
 <!--Simulation launcher for the HCAUV aircraft-->
 
 <launch>
-	
+
 	<!-- Enable simulation clock -->
-<param name="/use_sim_time" type="bool" value="true" />
+<param name="/use_sim_time" type="bool" value="false" />
 
 <group  ns="$(anon uav)">
 
@@ -42,10 +42,10 @@
 	</group>
 
 	<!-- Launch the visualizers /-->
-	<include file="$(find last_letter)/launch/visualization.launch" >
-		<arg name="uav_name" value="$(arg uav_name)" />
+	<!-- <include file="$(find last_letter)/launch/visualization.launch" >
+		<arg name="uav_name" value="$(arg uav_name)" /> -->
 		<!-- <arg name="groundCam" value="$(arg groundCam" /> -->
-	</include>
+	<!-- </include> -->
 
 </group>
 </launch>
