@@ -500,3 +500,38 @@ double Spline3::evaluate(double x)
 
     return sum;
   }
+
+/////////////////////////////////////////
+// Check for NaN in various structures //
+/////////////////////////////////////////
+
+bool isnan(geometry_msgs::Vector3 vec)
+{
+  if (isnan(vec.x)) {
+    return true;
+  }
+  if (isnan(vec.y)) {
+    return true;
+  }
+  if (isnan(vec.z)) {
+    return true;
+  }
+  return false;
+}
+
+bool isnan(geometry_msgs::Quaternion q)
+{
+  if (isnan(q.x)) {
+    return true;
+  }
+  if (isnan(q.y)) {
+    return true;
+  }
+  if (isnan(q.z)) {
+    return true;
+  }
+  if (isnan(q.w)) {
+    return true;
+  }
+  return false;
+}

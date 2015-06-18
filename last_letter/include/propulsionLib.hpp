@@ -3,6 +3,7 @@
 ///////////////////////////////////////////
 
 #include <tf/transform_broadcaster.h>
+#include <last_letter_msgs/ElectricEng.h>
 
 ////////////////////////////////////////////
 // Propulsion interface class declaration //
@@ -122,6 +123,8 @@ public:
 	double omegaMin, omegaMax;
 	double propDiam, engInertia, rho;
 	double Kv, Rm, Rs, I0, Cells;
+	last_letter_msgs::ElectricEng message;
+	ros::Publisher pub;
 
 	//////////////
 	// Members //

@@ -436,6 +436,10 @@ ElectricEng::ElectricEng(ModelPlane * parent, int ID) : Propulsion(parent, ID)
 	wrenchProp.torque.x = 0.0;
 	wrenchProp.torque.y = 0.0;
 	wrenchProp.torque.z = 0.0;
+
+	sprintf(paramMsg, "propulsion%i", id);
+	ros::NodeHandle n;
+	pub = n.advertise<last_letter_msgs::ElectricEng>(paramMsg, 1000); //propulsion data publisher
 }
 
 // Destructor
@@ -451,8 +455,10 @@ void ElectricEng::updateRadPS()
 	rho = parentObj->environment.density;
 
 	double Ei = std::fabs(omega)/2/M_PI/Kv;
+	// double Ei = rotationDir * omega/2/M_PI/Kv;
 	double Im = (Cells*4.0*inputMotor - Ei)/(Rs*inputMotor + Rm);
-	Im = std::max(Im,0.0); // Current cannot return to the ESC
+	// Im = std::max(Im,0.0); // Current cannot return to the ESC
+	// Im = std::max(Im,-1.0); // Allow limited current back to the ESC
 	double engPower = Ei*(Im - I0);
 
 	double advRatio = normalWind / (std::fabs(omega)/2.0/M_PI) /propDiam; // Convert advance ratio to dimensionless units, not 1/rad
@@ -468,8 +474,8 @@ void ElectricEng::updateRadPS()
 	double staticThrust = 0.9*fadeFactor*pow(M_PI/2.0*propDiam*propDiam*rho*engPower*engPower,1.0/3); //static thrust fades at 5% at 12m/s
 	wrenchProp.force.x = wrenchProp.force.x + staticThrust;
 
-	// Constrain propeller force to +-5 times the aircraft weight
-	wrenchProp.force.x = std::max(std::min(wrenchProp.force.x, 5.0*parentObj->kinematics.mass*9.81), -5.0*parentObj->kinematics.mass*9.81);
+	// Constrain propeller force to [0,+5] times the aircraft weight
+	wrenchProp.force.x = std::max(std::min(wrenchProp.force.x, 5.0*parentObj->kinematics.mass*9.81), 0.0*parentObj->kinematics.mass*9.81);
 	wrenchProp.torque.x = propPower / omega;
 
 	if (inputMotor < 0.01) {
@@ -486,6 +492,17 @@ void ElectricEng::updateRadPS()
 
 	parentObj->states.rotorspeed[0]=std::fabs(omega); // Write engine speed to states message
 
+	message.header.stamp = ros::Time::now();
+	message.powerEng = propPower;
+	message.omega = omega;
+	message.throttle = inputMotor*100.0;
+	message.powerProp = propPower;
+	message.thrust = wrenchProp.force.x;
+	message.torque = wrenchProp.torque.x;
+	message.advRatio = advRatio;
+	message.airspeed = normalWind;
+	message.ncoeff = npCoeff;
+	pub.publish(message);
 
 	// Printouts
 	// std::cout << deltat << " ";

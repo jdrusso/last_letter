@@ -23,6 +23,7 @@ add_message_files(
 	SimServos.msg
 	SimStates.msg
 	Geoid.msg
+	ElectricEng.msg
 	Environment.msg
 	SimSensor.msg
 	SimSensor3.msg

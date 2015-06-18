@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 	{
 		ROS_INFO("Using default real-time simulation clock");
 		sub = n.subscribe("states", 100, stateCallback);
-		ros::WallDuration(3).sleep(); //wait for other nodes to get raised
+		ros::WallDuration(1).sleep(); //wait for other nodes to get raised
 		simClock.clock = simTime;
 		pub.publish(simClock);
 		while (ros::ok())
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
 	{
 		ROS_INFO("Using free-spinning simulation clock");
 		sub = n.subscribe("states", 100, stateCallback);
-		ros::WallDuration(3).sleep(); //wait for other nodes to get raised
+		// ros::WallDuration(3).sleep(); //wait for other nodes to get raised
 		simClock.clock = simTime;
 		pub.publish(simClock);
 		while (ros::ok())
