@@ -128,3 +128,10 @@ public:
 geometry_msgs::Vector3 getAirData (geometry_msgs::Vector3 speeds);
 
 void WGS84_NM(double lat,double *NE, double *ME);
+
+
+/////////////////////////////////////////
+// Check for NaN in various structures //
+/////////////////////////////////////////
+bool isnan(geometry_msgs::Vector3 vec);
+bool isnan(geometry_msgs::Quaternion q);
