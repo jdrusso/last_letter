@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<robot name="plane">
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<box size="1.0 1.0 1.0"/>
+			</geometry>
+			<material name="orangeDummy">
+				<color rgba="1.0 0.6 0.0 1"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="propeller_1">
+		<visual>
+			<geometry>
+				<mesh filename="package://last_letter/data/parameters/aircraft/test_propulsion/urdf/10x4.7.stl"/>
+			</geometry>
+			<material name="whitePurity">
+				<color rgba="1.0 1.0 1.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<joint name="motor_mount" type="floating">
+		<parent link="base_link"/>
+		<child link="propeller_1"/>
+	</joint>
+
+</robot>
+

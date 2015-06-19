@@ -8,10 +8,10 @@ ModelPlane * uav;
 void stepCallback(const rosgraph_msgs::Clock time)
 {
 	uav->step();
-	if (isnan(uav->states.velocity.linear.x))
+	if (isnan(uav->states.velocity.linear))
 	{
 		ROS_FATAL("State NAN detected on main!");
-		uav->init();
+		ros::shutdown();
 	}
 }
 

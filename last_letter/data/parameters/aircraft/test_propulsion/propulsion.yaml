@@ -1,0 +1,34 @@
+# Airframe Propulsion Parameters
+# Motor types: 0 No motor, 1 Beard Engine, 2 Piston engine, 3 Electric Engine
+# Polynomial types: 0 1D, 1 2D, 2 cubic spline
+
+motor/nMotors: 1
+
+
+motor1/chanMotor: 2
+motor1/chanGimbal: -1
+motor1/gimbalAngle_max: 0.0
+
+motor1/CGOffset: [-0.6, 0.0, 0.0] # location offset of the motor mount relative to CG
+motor1/mountOrientation: [0.0, 0.0, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
+motor1/rotationDir: 1.0
+
+motor1/motorType: 3
+motor1/Kv: 13.333 # in RPS/V
+motor1/Rm: 0.041 # in Ohms
+motor1/I0: 0.9 # in Amperes
+
+motor1/RadPSLimits: [0.01, 1000.0]
+motor1/engInertia: 0.008 # in kg*m^3
+
+prop1/propDiam: 0.305 # in m
+prop1/nCoeffPoly/polyType: 0
+prop1/nCoeffPoly/polyNo: 4
+prop1/nCoeffPoly/coeffs: [0.0, 3.19, -12.15, 27.83, -21.82]
+prop1/powerPoly/polyType: 0
+prop1/powerPoly/polyNo: 3
+prop1/powerPoly/coeffs: [0.0661, -0.1647, 0.2958, -0.2355]
+
+
+battery/Rs: 0.0 # in Ohms
+battery/Cells: 3 # number of LiPo cells

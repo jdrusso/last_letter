@@ -1,0 +1,14 @@
+#Contact points array
+#Material types: 0 foam, 1 metal, 2 rubber wheel, 3 composites
+airframe/groundReactionType: 1
+airframe/contactPtsNo: 8
+airframe/contactPoint1: [0.5, 0.5, -0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint2: [0.5, 0.5, 0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint3: [0.5, -0.5, -0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint4: [0.5, -0.5, 0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint5: [-0.5, 0.5, -0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint6: [-0.5, 0.5, 0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint7: [-0.5, -0.5, -0.5, 0.0, 500000.0, 5000.0]
+airframe/contactPoint8: [-0.5, -0.5, 0.5, 0.0, 500000.0, 5000.0]
+
+airframe/chanBrake: 5

@@ -17,7 +17,9 @@
 			<geometry>
 				<mesh filename="package://last_letter/data/parameters/aircraft/firefly_Y6/urdf/10x4.7.stl"/>
 			</geometry>
-			<material name="redYouth"/>
+			<material name="whitePurity">
+				<color rgba="1.0 1.0 1.0 1.0"/>
+			</material>
 		</visual>
 	</link>
 
@@ -26,7 +28,7 @@
 			<geometry>
 				<mesh filename="package://last_letter/data/parameters/aircraft/firefly_Y6/urdf/10x4.7.stl"/>
 			</geometry>
-			<material name="redYouth"/>
+			<material name="whitePurity"/>
 		</visual>
 	</link>
 
@@ -35,7 +37,34 @@
 			<geometry>
 				<mesh filename="package://last_letter/data/parameters/aircraft/firefly_Y6/urdf/10x4.7.stl"/>
 			</geometry>
-			<material name="redYouth"/>
+			<material name="whitePurity"/>
+		</visual>
+	</link>
+
+	<link name="propeller_4">
+		<visual>
+			<geometry>
+				<mesh filename="package://last_letter/data/parameters/aircraft/firefly_Y6/urdf/10x4.7.stl"/>
+			</geometry>
+			<material name="whitePurity"/>
+		</visual>
+	</link>
+
+	<link name="propeller_5">
+		<visual>
+			<geometry>
+				<mesh filename="package://last_letter/data/parameters/aircraft/firefly_Y6/urdf/10x4.7.stl"/>
+			</geometry>
+			<material name="whitePurity"/>
+		</visual>
+	</link>
+
+	<link name="propeller_6">
+		<visual>
+			<geometry>
+				<mesh filename="package://last_letter/data/parameters/aircraft/firefly_Y6/urdf/10x4.7.stl"/>
+			</geometry>
+			<material name="whitePurity"/>
 		</visual>
 	</link>
 
@@ -54,5 +83,19 @@
 		<child link="propeller_3"/>
 	</joint>
 
+	<joint name="motor_mount_4" type="floating">
+		<parent link="base_link"/>
+		<child link="propeller_4"/>
+	</joint>
+
+	<joint name="motor_mount_5" type="floating">
+		<parent link="base_link"/>
+		<child link="propeller_5"/>
+	</joint>
+
+	<joint name="motor_mount_6" type="floating">
+		<parent link="base_link"/>
+		<child link="propeller_6"/>
+	</joint>
 </robot>
 

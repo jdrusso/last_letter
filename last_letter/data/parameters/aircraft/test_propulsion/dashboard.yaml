@@ -1,0 +1,125 @@
+# Engine power gauge
+Gauge1:
+    topic: propulsion1/powerEng
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 7000
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: Watts
+    description: Engine Power
+
+# Omega gauge
+Gauge2:
+    topic: propulsion1/omega
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 1000
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: rad/s
+    description: Angular Velocity
+
+# Throttle position gauge
+Gauge3:
+    topic: propulsion1/throttle
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 100.0
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: percent
+    description: throttle
+
+# Propeller power gauge
+Gauge4:
+    topic: propulsion1/powerProp
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 1000
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: Watts
+    description: Propeller Power
+
+# Propeller thrust gauge
+Gauge5:
+    topic: propulsion1/thrust
+    length: 360.0
+    end_angle: -90.0
+    min : 0
+    max : 100.0
+    main_points : 10
+    warning : []
+    danger : []
+    multiplier: ''
+    units: N
+    description: Propeller Thrust
+
+# Propeller torque gauge
+Gauge6:
+    topic: propulsion1/torque
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 1.0
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: Nm
+    description: Propeller Torque
+
+# Advance ratio gauge
+Gauge7:
+    topic: propulsion1/advRatio
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 10.0
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: units
+    description: Advance Ratio
+
+# Airspeed gauge
+Gauge8:
+    topic: propulsion1/airspeed
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 30
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: m/s
+    description: Airspeed
+
+# Propeller coefficient gauge
+Gauge9:
+    topic: propulsion1/ncoeff
+    length: 360.0
+    end_angle: -90.0
+    min: 0.0
+    max: 1.0
+    main_points : 10
+    warning: []
+    danger: []
+    multiplier: ''
+    units: units
+    description: Propeller coefficient

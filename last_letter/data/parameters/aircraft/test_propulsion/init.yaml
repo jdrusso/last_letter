@@ -1,0 +1,16 @@
+#Parameters for a typical Skywalker 2013 electric airframe
+#Based on empirical values and online sources
+#All units are in S.I. unless otherwise stated
+
+#Initial State
+init/coordinates: [0.0, 0.0, 0.0] #latitude, longitude, altitude coordinates. Altitude for now should be ground elevation
+init/position: [0.0, 0.0, -0.5] #NED frame
+init/orientation:  [0.0, 0.0, 0.0, 1.0] #NED frame Nortwards
+init/velLin:   [0.0, 0.0, 0.0] #body frame
+init/velAng: [0.0, 0.0, 0.0] #body frame
+init/aileron: 0.0
+init/elevator: 0.0
+init/throttle: 0.0
+init/rudder: 0.0
+
+init/chanReset: 9

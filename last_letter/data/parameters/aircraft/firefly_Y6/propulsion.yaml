@@ -2,83 +2,157 @@
 # Motor types: 0 No motor, 1 Beard Engine, 2 Piston engine, 3 Electric Engine
 # Polynomial types: 0 1D, 1 2D, 2 cubic spline
 
-motor/nMotors: 3
+motor/nMotors: 6
 
 
 motor1/chanMotor: 2
 motor1/chanGimbal: -1
 motor1/gimbalAngle_max: 0.0
 
-motor1/CGOffset: [0.3, 0.3, -0.13] # location offset of the motor mount relative to CG
+motor1/CGOffset: [0.1905, 0.2435, -0.05] # location offset of the motor mount relative to CG
 motor1/mountOrientation: [0.0, 1.57, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
-motor1/rotationDir: 1.0
+motor1/rotationDir: -1.0
 
 motor1/motorType: 3
-motor1/Kv: 2 # in RPS/V
-motor1/Rm: 0.041 # in Ohms
-motor1/I0: 0.9 # in Amperes
+motor1/Kv: 14.667 # in RPS/V
+motor1/Rm: 0.307 # in Ohms
+motor1/I0: 0.6 # in Amperes
 
-motor1/RadPSLimits: [0.01, 100.0]
+motor1/RadPSLimits: [0.01, 1600.0]
 motor1/engInertia: 0.008 # in kg*m^3
 
-prop1/propDiam: 0.05 # in m
+prop1/propDiam: 0.254 # in m
 prop1/nCoeffPoly/polyType: 0
 prop1/nCoeffPoly/polyNo: 4
-prop1/nCoeffPoly/coeffs: [0.0, 3.19, -12.15, 27.83, -21.82]
+prop1/nCoeffPoly/coeffs: [0.0, -1.25, 19.73, -45.21, 28.81]
 prop1/powerPoly/polyType: 0
 prop1/powerPoly/polyNo: 3
-prop1/powerPoly/coeffs: [0.0220, -0.0549, 0.0986, -0.0785]
+prop1/powerPoly/coeffs: [0.0487, -0.1187, 0.1787, -0.1314]
 
 
 motor2/chanMotor: 2
 motor2/chanGimbal: -1
 motor2/gimbalAngle_max: 0.0
 
-motor2/CGOffset: [0.3, -0.3, -0.13] # location offset of the motor mount relative to CG
+motor2/CGOffset: [0.1905, 0.2435, 0.05] # location offset of the motor mount relative to CG
 motor2/mountOrientation: [0.0, 1.57, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
 motor2/rotationDir: 1.0
 
 motor2/motorType: 3
-motor2/Kv: 2 # in RPS/V
-motor2/Rm: 0.041 # in Ohms
-motor2/I0: 0.9 # in Amperes
+motor2/Kv: 14.667 # in RPS/V
+motor2/Rm: 0.307 # in Ohms
+motor2/I0: 0.6 # in Amperes
 
-motor2/RadPSLimits: [0.01, 100.0]
+motor2/RadPSLimits: [0.01, 1600.0]
 motor2/engInertia: 0.008 # in kg*m^3
 
-prop2/propDiam: 0.05 # in m
+prop2/propDiam: 0.254 # in m
 prop2/nCoeffPoly/polyType: 0
 prop2/nCoeffPoly/polyNo: 4
-prop2/nCoeffPoly/coeffs: [0.0, 3.19, -12.15, 27.83, -21.82]
+prop2/nCoeffPoly/coeffs: [0.0, -1.25, 19.73, -45.21, 28.81]
 prop2/powerPoly/polyType: 0
 prop2/powerPoly/polyNo: 3
-prop2/powerPoly/coeffs: [0.0220, -0.0549, 0.0986, -0.0785]
+prop2/powerPoly/coeffs: [0.0487, -0.1187, 0.1787, -0.1314]
 
 
 motor3/chanMotor: 2
 motor3/chanGimbal: 3
 motor3/gimbalAngle_max: 0.79
 
-motor3/CGOffset: [-0.55, 0.0, -0.13] # location offset of the motor mount relative to CG
+motor3/CGOffset: [-0.3775, 0.0, -0.05] # location offset of the motor mount relative to CG
 motor3/mountOrientation: [0.0, 1.57, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
-motor3/rotationDir: 1.0
+motor3/rotationDir: -1.0
 
 motor3/motorType: 3
-motor3/Kv: 2.0 # in RPS/V
-motor3/Rm: 0.041 # in Ohms
-motor3/I0: 0.9 # in Amperes
+motor3/Kv: 14.667 # in RPS/V
+motor3/Rm: 0.307 # in Ohms
+motor3/I0: 0.6 # in Amperes
 
-motor3/RadPSLimits: [0.01, 100.0]
+motor3/RadPSLimits: [0.01, 1600.0]
 motor3/engInertia: 0.008 # in kg*m^3
 
-prop3/propDiam: 0.1 # in m
+prop3/propDiam: 0.254 # in m
 prop3/nCoeffPoly/polyType: 0
 prop3/nCoeffPoly/polyNo: 4
-prop3/nCoeffPoly/coeffs: [0.0, 3.19, -12.15, 27.83, -21.82]
+prop3/nCoeffPoly/coeffs: [0.0, -1.25, 19.73, -45.21, 28.81]
 prop3/powerPoly/polyType: 0
 prop3/powerPoly/polyNo: 3
-prop3/powerPoly/coeffs: [0.0220, -0.0549, 0.0986, -0.0785]
+prop3/powerPoly/coeffs: [0.0487, -0.1187, 0.1787, -0.1314]
+
+motor4/chanMotor: 2
+motor4/chanGimbal: -1
+motor4/gimbalAngle_max: 0.0
+
+motor4/CGOffset: [-0.3775, 0.0, 0.05] # location offset of the motor mount relative to CG
+motor4/mountOrientation: [0.0, 1.57, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
+motor4/rotationDir: 1.0
+
+motor4/motorType: 3
+motor4/Kv: 14.667 # in RPS/V
+motor4/Rm: 0.307 # in Ohms
+motor4/I0: 0.6 # in Amperes
+
+motor4/RadPSLimits: [0.01, 1600.0]
+motor4/engInertia: 0.008 # in kg*m^3
+
+prop4/propDiam: 0.254 # in m
+prop4/nCoeffPoly/polyType: 0
+prop4/nCoeffPoly/polyNo: 4
+prop4/nCoeffPoly/coeffs: [0.0, -1.25, 19.73, -45.21, 28.81]
+prop4/powerPoly/polyType: 0
+prop4/powerPoly/polyNo: 3
+prop4/powerPoly/coeffs: [0.0487, -0.1187, 0.1787, -0.1314]
+
+
+motor5/chanMotor: 2
+motor5/chanGimbal: -1
+motor5/gimbalAngle_max: 0.0
+
+motor5/CGOffset: [0.1905, -0.2435, -0.05] # location offset of the motor mount relative to CG
+motor5/mountOrientation: [0.0, 1.57, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
+motor5/rotationDir: -1.0
+
+motor5/motorType: 3
+motor5/Kv: 14.667 # in RPS/V
+motor5/Rm: 0.307 # in Ohms
+motor5/I0: 0.6 # in Amperes
+
+motor5/RadPSLimits: [0.01, 1600.0]
+motor5/engInertia: 0.008 # in kg*m^3
+
+prop5/propDiam: 0.254 # in m
+prop5/nCoeffPoly/polyType: 0
+prop5/nCoeffPoly/polyNo: 4
+prop5/nCoeffPoly/coeffs: [0.0, -1.25, 19.73, -45.21, 28.81]
+prop5/powerPoly/polyType: 0
+prop5/powerPoly/polyNo: 3
+prop5/powerPoly/coeffs: [0.0487, -0.1187, 0.1787, -0.1314]
+
+
+motor6/chanMotor: 2
+motor6/chanGimbal: 3
+motor6/gimbalAngle_max: 0.79
+
+motor6/CGOffset: [0.1905, -0.2435, 0.05] # location offset of the motor mount relative to CG
+motor6/mountOrientation: [0.0, 1.57, 0.0] # Euler rotations from body axes to propeller normal plane. Gimbal rotation axis should be in z-axis.
+motor6/rotationDir: 1.0
+
+motor6/motorType: 3
+motor6/Kv: 14.667 # in RPS/V
+motor6/Rm: 0.307 # in Ohms
+motor6/I0: 0.6 # in Amperes
+
+motor6/RadPSLimits: [0.01, 1600.0]
+motor6/engInertia: 0.008 # in kg*m^3
+
+prop6/propDiam: 0.1 # in m
+prop6/nCoeffPoly/polyType: 0
+prop6/nCoeffPoly/polyNo: 4
+prop6/nCoeffPoly/coeffs: [0.0, -1.25, 19.73, -45.21, 28.81]
+prop6/powerPoly/polyType: 0
+prop6/powerPoly/polyNo: 3
+prop6/powerPoly/coeffs: [0.0487, -0.1187, 0.1787, -0.1314]
 
 
 battery/Rs: 0.0 # in Ohms
-battery/Cells: 3 # number of LiPo cells
+battery/Cells: 4 # number of LiPo cells

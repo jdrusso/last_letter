@@ -47,13 +47,25 @@
 	// Collect forces from underlying models
 	geometry_msgs::Vector3 Dynamics::getForce()
 	{
-		geometry_msgs::Vector3 accumulator;
-		accumulator = gravity->getForce();
+		geometry_msgs::Vector3 accumulator, tempVect;
+
+		tempVect = gravity->getForce();
+		if (isnan(tempVect)) {ROS_FATAL("NaN member in gravity force vector"); ros::shutdown();}
+		accumulator = tempVect;
+
 		for (int i=0; i<nMotors; i++){
-			accumulator = propulsion[i]->getForce() + accumulator;
+			tempVect = propulsion[i]->getForce();
+			if (isnan(tempVect)) {ROS_FATAL("NaN member in propulsion%i force vector",i+1); ros::shutdown();}
+			accumulator = tempVect + accumulator;
 		}
-		accumulator = groundReaction->getForce() + accumulator;
-		accumulator = aerodynamics->getForce() + accumulator;
+
+		tempVect = aerodynamics->getForce();
+		if (isnan(tempVect)) {ROS_FATAL("NaN member in aerodynamics force vector"); ros::shutdown();}
+		accumulator = tempVect + accumulator;
+
+		tempVect = groundReaction->getForce();
+		if (isnan(tempVect)) {ROS_FATAL("NaN member in groundReaction force vector"); ros::shutdown();}
+		accumulator = tempVect + accumulator;
 
 		return accumulator;
 	}
@@ -61,13 +73,25 @@
 	// Collect torques from underlying models
 	geometry_msgs::Vector3 Dynamics::getTorque()
 	{
-		geometry_msgs::Vector3 tempVect, accumulator;
-		accumulator = aerodynamics->getTorque();
-		accumulator = gravity->getTorque() + accumulator;
+		geometry_msgs::Vector3 accumulator, tempVect;
+
+		tempVect = aerodynamics->getTorque();
+		if (isnan(tempVect)) {ROS_FATAL("NaN member in aerodynamics torque vector"); ros::shutdown();}
+		accumulator = tempVect;
+
+		tempVect = gravity->getTorque();
+		if (isnan(tempVect)) {ROS_FATAL("NaN member in gravity torque vector"); ros::shutdown();}
+		accumulator = accumulator + tempVect;
+
 		for (int i=0; i<nMotors; i++){
-			accumulator = propulsion[i]->getTorque() + accumulator;
+			tempVect = propulsion[i]->getTorque();
+			if (isnan(tempVect)) {ROS_FATAL("NaN member in propulsion%i torque vector",i+1); ros::shutdown();}
+			accumulator = tempVect + accumulator;
 		}
-		accumulator = groundReaction->getTorque() + accumulator;
+
+		tempVect = groundReaction->getTorque();
+		if (isnan(tempVect)) {ROS_FATAL("NaN member in groundReaction torque vector"); ros::shutdown();}
+		accumulator = tempVect + accumulator;
 
 		return accumulator;
 	}

@@ -23,6 +23,7 @@ Kinematics::Kinematics(ModelPlane * parent)
 
 	// Calculate inertia matrix...
 	double G = j_x*j_z-pow(j_xz,2);
+	if (G==0) {ROS_FATAL("Inertia matrix is not invertible!"); ros::shutdown();}
 	J[0] = j_x; J[1] = 0; J[2] = -j_xz;
 	J[3] = 0; J[4] = j_y; J[5] = 0;
 	J[6] = -j_xz; J[7] = 0; J[8] = j_z;
@@ -56,23 +57,29 @@ void Kinematics::calcDerivatives()
 
 	// create position derivatives from earth velocity
 	posDot = Reb*parentObj->states.velocity.linear;
+	if (isnan(posDot)) {ROS_FATAL("NaN member in position derivative vector"); ros::shutdown();}
 
 	// create body velocity derivatives from acceleration, angular rotation and body velocity
 	linearAcc = (1.0/mass)*forceInput;
+	if (isnan(linearAcc)) {ROS_FATAL("NaN member in linear acceleration vector"); ros::shutdown();}
 	geometry_msgs::Vector3 corriolisAcc;
 	vector3_cross(-parentObj->states.velocity.angular, parentObj->states.velocity.linear, &corriolisAcc);
+	if (isnan(corriolisAcc)) {ROS_FATAL("NaN member in corriolis acceleration vector"); ros::shutdown();}
 	speedDot = linearAcc + corriolisAcc;
+	if (isnan(speedDot)) {ROS_FATAL("NaN member in velocity derivative vector"); ros::shutdown();}
 
 	// create angular derivatives quaternion from angular rates
 	quatDot.w = 1.0;
 	quatDot.x = parentObj->states.velocity.angular.x*0.5*parentObj->dt;
 	quatDot.y = parentObj->states.velocity.angular.y*0.5*parentObj->dt;
 	quatDot.z = parentObj->states.velocity.angular.z*0.5*parentObj->dt;
+	if (isnan(quatDot)) {ROS_FATAL("NaN member in quaternion derivative vector"); ros::shutdown();}
 
 	// create angular rate derivatives from torque
 	vector3_cross(parentObj->states.velocity.angular, J*parentObj->states.velocity.angular, &tempVect);
 	tempVect = -tempVect+torqueInput;
 	rateDot = Jinv*tempVect;
+	if (isnan(rateDot)) {ROS_FATAL("NaN member in angular velocity derivative vector"); ros::shutdown();}
 }
 
 //////////////////////////
@@ -107,19 +114,26 @@ void ForwardEuler::propagation()
 	parentObj->states.pose.position.x = parentObj->states.pose.position.x + parentObj->kinematics.posDot.x * parentObj->dt;
 	parentObj->states.pose.position.y = parentObj->states.pose.position.y + parentObj->kinematics.posDot.y * parentObj->dt;
 	parentObj->states.pose.position.z = parentObj->states.pose.position.z + parentObj->kinematics.posDot.z * parentObj->dt;
+	tempVect.x = parentObj->states.pose.position.x;
+	tempVect.y = parentObj->states.pose.position.y;
+	tempVect.z = parentObj->states.pose.position.z;
+	if (isnan(tempVect)) {ROS_FATAL("NaN member in position vector"); ros::shutdown();}
 
 	// Propagate orientation quaternion from angular derivatives quaternion
 	geometry_msgs::Quaternion quat = parentObj->states.pose.orientation;
 	quat_product(quat,parentObj->kinematics.quatDot,&(parentObj->states.pose.orientation));
 	quat_normalize(&(parentObj->states.pose.orientation));
+	if (isnan(parentObj->states.pose.orientation)) {ROS_FATAL("NaN member in orientation quaternion"); ros::shutdown();}
 
 	// Propagate body velocity from body velocity derivatives
 	tempVect = parentObj->dt*parentObj->kinematics.speedDot;
 	parentObj->states.velocity.linear = parentObj->states.velocity.linear + tempVect;
+	if (isnan(parentObj->states.velocity.linear)) {ROS_FATAL("NaN member in linear velocity vector"); ros::shutdown();}
 
 	// Propagates angular velocity from angular derivatives
 	tempVect = parentObj->dt*parentObj->kinematics.rateDot;
 	parentObj->states.velocity.angular = parentObj->states.velocity.angular + tempVect;
+	if (isnan(parentObj->states.velocity.angular)) {ROS_FATAL("NaN member in angular velocity vector"); ros::shutdown();}
 
 	// Set linear acceleration from the speed derivatives
 	parentObj->states.acceleration.linear = parentObj->kinematics.speedDot;

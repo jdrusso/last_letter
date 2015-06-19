@@ -1,0 +1,6 @@
+airframe/m: 1000.0
+airframe/CGOffset: [0.0, 0.0, 0.0] # vector from CG to CoL
+airframe/j_x: 166.67
+airframe/j_y: 166.67
+airframe/j_z: 166.67
+airframe/j_xz: 100.0
