@@ -49,23 +49,34 @@
 	{
 		geometry_msgs::Vector3 accumulator, tempVect;
 
-		tempVect = gravity->getForce();
-		if (isnan(tempVect)) {ROS_FATAL("NaN member in gravity force vector"); ros::shutdown();}
-		accumulator = tempVect;
+		accumulator.x = 0;
+		accumulator.y = 0;
+		accumulator.z = 0;
 
 		for (int i=0; i<nMotors; i++){
-			tempVect = propulsion[i]->getForce();
-			if (isnan(tempVect)) {ROS_FATAL("NaN member in propulsion%i force vector",i+1); ros::shutdown();}
+			tempVect = propulsion[i]->wrenchProp.force;
+			if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in propulsion%i force vector",i+1); ros::shutdown();}
 			accumulator = tempVect + accumulator;
 		}
+		// std::cout << "propulsion accumulator: " << accumulator.x << " " << accumulator.y << " " << accumulator.z << std::endl;
+
+		tempVect = gravity->getForce();
+		if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in gravity force vector"); ros::shutdown();}
+		accumulator = tempVect + accumulator;
+
+		// std::cout << "gravity: " << tempVect.x << " " << tempVect.y << " " << tempVect.z << std::endl;
 
 		tempVect = aerodynamics->getForce();
-		if (isnan(tempVect)) {ROS_FATAL("NaN member in aerodynamics force vector"); ros::shutdown();}
+		if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in aerodynamics force vector"); ros::shutdown();}
 		accumulator = tempVect + accumulator;
 
+		// std::cout << "aerodynamics: " << tempVect.x << " " << tempVect.y << " " << tempVect.z << std::endl;
+
 		tempVect = groundReaction->getForce();
-		if (isnan(tempVect)) {ROS_FATAL("NaN member in groundReaction force vector"); ros::shutdown();}
+		if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in groundReaction force vector"); ros::shutdown();}
 		accumulator = tempVect + accumulator;
+
+		// std::cout << "groundReaction: " << tempVect.x << " " << tempVect.y << " " << tempVect.z << std::endl;
 
 		return accumulator;
 	}
@@ -76,21 +87,21 @@
 		geometry_msgs::Vector3 accumulator, tempVect;
 
 		tempVect = aerodynamics->getTorque();
-		if (isnan(tempVect)) {ROS_FATAL("NaN member in aerodynamics torque vector"); ros::shutdown();}
+		if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in aerodynamics torque vector"); ros::shutdown();}
 		accumulator = tempVect;
 
 		tempVect = gravity->getTorque();
-		if (isnan(tempVect)) {ROS_FATAL("NaN member in gravity torque vector"); ros::shutdown();}
+		if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in gravity torque vector"); ros::shutdown();}
 		accumulator = accumulator + tempVect;
 
 		for (int i=0; i<nMotors; i++){
-			tempVect = propulsion[i]->getTorque();
-			if (isnan(tempVect)) {ROS_FATAL("NaN member in propulsion%i torque vector",i+1); ros::shutdown();}
+			tempVect = propulsion[i]->wrenchProp.torque;
+			if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in propulsion%i torque vector",i+1); ros::shutdown();}
 			accumulator = tempVect + accumulator;
 		}
 
 		tempVect = groundReaction->getTorque();
-		if (isnan(tempVect)) {ROS_FATAL("NaN member in groundReaction torque vector"); ros::shutdown();}
+		if (isnan(tempVect)) {ROS_FATAL("dynamicsLib.cpp: NaN member in groundReaction torque vector"); ros::shutdown();}
 		accumulator = tempVect + accumulator;
 
 		return accumulator;

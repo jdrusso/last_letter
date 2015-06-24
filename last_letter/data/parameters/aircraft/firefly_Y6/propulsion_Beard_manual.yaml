@@ -19,6 +19,7 @@ motor1/motorType: 1
 motor1/s_prop: 0.051
 motor1/k_motor: 17.9
 motor1/k_t_p: 0.00002
+# motor1/k_omega: 254
 motor1/k_omega: 254
 motor1/c_prop: 1.0
 

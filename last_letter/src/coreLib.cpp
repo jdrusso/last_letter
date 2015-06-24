@@ -110,6 +110,9 @@ void ModelPlane::init()
 void ModelPlane::step(void)
 {
 	// Perform step actions serially
+	//
+	airdata.calcAirData();
+
 	for (int i=0; i<dynamics.nMotors; i++) {
 		dynamics.propulsion[i]->stepEngine();
 	}
@@ -121,7 +124,6 @@ void ModelPlane::step(void)
 	tprev = ros::Time::now();
 	states.header.stamp = tprev;
 
-	airdata.calcAirData();
 	//publish results
 	pubState.publish(states);
 	pubForce.publish(kinematics.forceInput);
@@ -179,6 +181,7 @@ Airdata::~Airdata()
 //Caclulate airspeed and aerodynamics angles
 void Airdata::calcAirData()
 {
+	// Calculate relative airspeed
 	u_r = parentObj->states.velocity.linear.x - parentObj->environment.wind.x;
 	v_r = parentObj->states.velocity.linear.y - parentObj->environment.wind.y;
 	w_r = parentObj->states.velocity.linear.z - parentObj->environment.wind.z;

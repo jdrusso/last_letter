@@ -1,6 +1,7 @@
 #include <geometry_msgs/Quaternion.h>
 #include <geometry_msgs/Vector3.h>
 #include <cstdio>
+#include <cmath>
 
 #define R_earth 6378137.0
 #define f_earth 1.0/298.257223563
@@ -135,3 +136,8 @@ void WGS84_NM(double lat,double *NE, double *ME);
 /////////////////////////////////////////
 bool isnan(geometry_msgs::Vector3 vec);
 bool isnan(geometry_msgs::Quaternion q);
+bool isnan_mtx(double * R, int n);
+
+bool myisfinite(const geometry_msgs::Vector3 vec);
+bool myisfinite(const geometry_msgs::Quaternion q);
+bool myisfinite_mtx(double * R, int n);

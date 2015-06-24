@@ -168,6 +168,7 @@
 
 		grav0 = last_letter_msgs::Geoid::EARTH_grav * (1.0+0.00193185138639 * slat2) / sqrt(1.0-0.00669437999013 *slat2);
 		double gravity = grav0 * (1.0 - grav_temp * states.geoid.altitude + 3.0 *(pow(states.geoid.altitude,2)/Re2) );
+		if (isnan(gravity)) {ROS_FATAL("environment.cpp: gravity is NaN"); ros::shutdown();}
 		environment.gravity = gravity;
 	}
 

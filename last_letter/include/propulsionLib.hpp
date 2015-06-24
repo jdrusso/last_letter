@@ -28,7 +28,8 @@ class Propulsion
 	geometry_msgs::Wrench wrenchProp;
 
 	tf::TransformBroadcaster broadcaster; // Transformations broadcaster object
-	tf::Transform body_to_mount, mount_to_gimbal, gimbal_to_prop, body_to_prop; // Transformations in the propeller assembly
+	tf::Transform body_to_mount, mount_to_gimbal, gimbal_to_prop, body_to_prop; // Transformations in the propeller assembly for visual rendering
+	tf::Transform body_to_mount_rot, mount_to_gimbal_rot, gimbal_to_prop_rot, body_to_prop_rot; // Transformations in the propeller assembly for force and moment rotation
 
 	///////////
 	//Functions
@@ -42,8 +43,8 @@ class Propulsion
 	void rotateProp(); // Update the propeller angle
 	void rotateForce(); // convert the resulting force to the body axes
 	void rotateTorque(); // convert the resulting torque to the body axes
-	virtual geometry_msgs::Vector3 getForce() =0; // Calculate Forces
-	virtual geometry_msgs::Vector3 getTorque() =0; //Calculate Torques
+	virtual void getForce() =0; // Calculate Forces
+	virtual void getTorque() =0; //Calculate Torques
 };
 
 ////////////////////////////
@@ -56,8 +57,8 @@ public:
 	~NoEngine();
 
 	void updateRadPS();
-	geometry_msgs::Vector3 getForce();
-	geometry_msgs::Vector3 getTorque();
+	void getForce();
+	void getTorque();
 };
 
 ////////////////////////////////////////////////////
@@ -77,8 +78,8 @@ class EngBeard: public Propulsion
 	~EngBeard();
 
 	void updateRadPS(); //Step the angular speed
-	geometry_msgs::Vector3 getForce(); //Calculate Forces
-	geometry_msgs::Vector3 getTorque(); //Calculate Torques
+	void getForce();
+	void getTorque();
 };
 
 ///////////////////
@@ -107,8 +108,8 @@ public:
 	~PistonEng();
 
 	void updateRadPS();
-	geometry_msgs::Vector3 getForce();
-	geometry_msgs::Vector3 getTorque();
+	void getForce();
+	void getTorque();
 };
 
 ///////////////////////////
@@ -138,6 +139,6 @@ public:
 	~ElectricEng();
 
 	void updateRadPS();
-	geometry_msgs::Vector3 getForce();
-	geometry_msgs::Vector3 getTorque();
+	void getForce();
+	void getTorque();
 };
